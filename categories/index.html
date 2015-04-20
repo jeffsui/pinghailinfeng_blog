@@ -1,10 +1,10 @@
 
-  <!DOCTYPE HTML>
+ <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   
-    <title>标签 : hexo | 凭海临风的测试江湖</title>
+    <title>categories | 凭海临风的测试江湖</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jeff Sui">
@@ -13,12 +13,12 @@
     
     <meta name="description" content="凭海临风的博客">
 <meta property="og:type" content="website">
-<meta property="og:title" content="凭海临风的测试江湖">
-<meta property="og:url" content="http://jeffsui.github.io/tags/hexo/index.html">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://jeffsui.github.io/categories/index.html">
 <meta property="og:site_name" content="凭海临风的测试江湖">
 <meta property="og:description" content="凭海临风的博客">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="凭海临风的测试江湖">
+<meta name="twitter:title" content="categories">
 <meta name="twitter:description" content="凭海临风的博客">
 
     
@@ -73,31 +73,15 @@
 </div>
       </header>
       <div id="container">
-        
-
+          
 <div class="archive-title" >
-  <h2 class="tag-icon">hexo</h2>
-  
+<h2 class="category-icon">分类</h2>
+
 </div>
-<div id="main" class="archive-part clearfix">
-  <div id="archive-page">
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/pinghailinfeng_blog/2015/04/17/push-hexo-to-github/" title="push-hexo-to-github" itemprop="url">
-  
-
-    <time datetime="2015-04-17T08:35:31.000Z" itemprop="datePublished">2015-04-17</time>
-
-
-    <h1 itemprop="name">push-hexo-to-github</h1>
-
-  </a>
-</section>
-
-
-  </div>
+<div id="main" class="archive-part">
+<div class="all-list-box"></div>
 </div>
+
 
       </div>
       <footer><div id="footer" >
@@ -205,6 +189,24 @@ $(document).ready(function(){
 
 
 
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var list    = $('.archive-title a'),
+      box     = $('.all-list-box'),
+      first   = $('.archive-title a:first-of-type');
+      box.load(first.attr('data-src').toString()+' #archive-page');
+      first.addClass('current');
+  list.each(function(){
+    $(this).click(function(){
+      var listSrc=$(this).attr('data-src').toString()+' #archive-page';
+      box.load(listSrc);
+      list.removeClass('current');
+      $(this).addClass('current');
+     });  
+    });
+  }); 
+</script>
 
 
 <link rel="stylesheet" href="/pinghailinfeng_blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
