@@ -4,7 +4,7 @@
   
   <link href="/pinghailinfeng_blog/atom.xml" rel="self"/>
   <link href="http://jeffsui.github.io/"/>
-  <updated>2015-04-20T07:55:07.864Z</updated>
+  <updated>2015-04-21T06:44:12.167Z</updated>
   <id>http://jeffsui.github.io/</id>
   
   <author>
@@ -13,6 +13,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[javascript asynchronous programming learning :event]]></title>
+    <link href="http://jeffsui.github.io/2015/04/20/javascript-asynchronous-programming-learning-event/"/>
+    <id>http://jeffsui.github.io/2015/04/20/javascript-asynchronous-programming-learning-event/</id>
+    <published>2015-04-20T13:05:16.000Z</published>
+    <updated>2015-04-21T06:44:12.167Z</updated>
+    <content type="html"><![CDATA[<h1 id="javascript异步编程读书笔记之事件机制">javascript异步编程读书笔记之事件机制</h1><h2 id="事件的调度">事件的调度</h2><ul>
+<li>异步执行</li>
+</ul>
+<p><code>setTimeout</code>函数的解释:给定一个回调及n毫秒的延迟,setTimeout会在n毫秒后运行该回调。</p>
+<p>代码清单1:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123; </span><br><span class="line">		<span class="built_in">console</span>.log(i); &#125;, </span><br><span class="line">	<span class="number">0</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>输出结果:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">4</span><br><span class="line">4</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>线程阻塞<br>代码清单2:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> start = <span class="keyword">new</span> <span class="built_in">Date</span>;</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">var</span> end = <span class="keyword">new</span> <span class="built_in">Date</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Time elapsed:'</span>, end - start, <span class="string">'ms'</span>);</span><br><span class="line">&#125;, <span class="number">500</span>);</span><br><span class="line"><span class="keyword">while</span> (<span class="keyword">new</span> <span class="built_in">Date</span> - start &lt; <span class="number">1000</span>) &#123;&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>队列</p>
+</li>
+</ul>
+<p>javascript使用队列的方式来循环处理请求,这种机制被称为<strong>事件循环</strong>。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="javascript异步编程读书笔记之事件机制">javascript异步编程读书笔记之事件机制</h1><h2 id="事件的调度">事件的调度</h2><ul>
+<li>异步执行</li>
+</ul>
+<p><code>setTimeout</code>函数的]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://jeffsui.github.io/tags/javascript/"/>
+    
+      <category term="异步" scheme="http://jeffsui.github.io/tags/%E5%BC%82%E6%AD%A5/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[use-shorturl and two-dimensional-barcodes to beautify blog]]></title>
@@ -133,15 +168,21 @@
   </entry>
   
   <entry>
-    <title><![CDATA[loadrunner]]></title>
-    <link href="http://jeffsui.github.io/2015/04/17/loadrunner/"/>
-    <id>http://jeffsui.github.io/2015/04/17/loadrunner/</id>
+    <title><![CDATA[sublime run slow problem]]></title>
+    <link href="http://jeffsui.github.io/2015/04/17/sublime-run-slow-problem/"/>
+    <id>http://jeffsui.github.io/2015/04/17/sublime-run-slow-problem/</id>
     <published>2015-04-17T06:49:18.000Z</published>
-    <updated>2015-04-17T06:49:18.053Z</updated>
-    <content type="html"></content>
+    <updated>2015-04-21T01:47:37.133Z</updated>
+    <content type="html"><![CDATA[<h1 id="解决sublime_Text2运行缓慢的方法">解决sublime Text2运行缓慢的方法</h1><p>今天打开<code>sublime</code>想写博客发现整个页面打开很慢,切换tab要等好几秒。<br>发现了一个帖子,说<code>GitGutter</code>这个插件在st2下会影响切换tab速度。</p>
+<p>于是 <code>ctrl+shift+p</code>调出命令,remove package,选择<code>GitGutter</code>,回车。<br>重启sublime,世界都变得清静了。</p>
+]]></content>
     <summary type="html">
-    
+    <![CDATA[<h1 id="解决sublime_Text2运行缓慢的方法">解决sublime Text2运行缓慢的方法</h1><p>今天打开<code>sublime</code>想写博客发现整个页面打开很慢,切换tab要等好几秒。<br>发现了一个帖子,说<code>GitGutter]]>
     </summary>
+    
+      <category term="GitGutter" scheme="http://jeffsui.github.io/tags/GitGutter/"/>
+    
+      <category term="sublime" scheme="http://jeffsui.github.io/tags/sublime/"/>
     
   </entry>
   
