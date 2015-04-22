@@ -4,7 +4,7 @@
   
   <link href="/pinghailinfeng_blog/atom.xml" rel="self"/>
   <link href="http://jeffsui.github.io/"/>
-  <updated>2015-04-22T01:15:44.793Z</updated>
+  <updated>2015-04-22T01:51:10.284Z</updated>
   <id>http://jeffsui.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://jeffsui.github.io/2015/04/22/talk-about-software-engineering/"/>
     <id>http://jeffsui.github.io/2015/04/22/talk-about-software-engineering/</id>
     <published>2015-04-22T01:12:54.000Z</published>
-    <updated>2015-04-22T01:15:44.793Z</updated>
+    <updated>2015-04-22T01:51:10.284Z</updated>
     <content type="html"><![CDATA[<h1 id="关于软件工程的讨论—质量篇">关于软件工程的讨论—质量篇</h1><blockquote>
 <p>那为什么软件系统的质量不容易高呢？我觉得主要原因是流程不完善。那为什么不完善？需求容易变。为什么容易变？是因为不论程序员自己，还是需求方，其实潜意识都认为自己做的东西是变更成本较低的。</p>
 <p>试想一下，为什么没人在盖高楼盖一半变更需求？为什么没人修大桥修一半变更需求？甚至做衣服做一半的时候变更需求，理发到一半变更需求，都会被人认为是不讲理。但是在软件领域，好像这倒成了普遍现象。</p>
@@ -38,6 +38,8 @@
     
       <category term="软件工程" scheme="http://jeffsui.github.io/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
+      <category term="软件工程" scheme="http://jeffsui.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
   </entry>
   
   <entry>
@@ -45,7 +47,7 @@
     <link href="http://jeffsui.github.io/2015/04/20/javascript-asynchronous-programming-learning-event/"/>
     <id>http://jeffsui.github.io/2015/04/20/javascript-asynchronous-programming-learning-event/</id>
     <published>2015-04-20T13:05:16.000Z</published>
-    <updated>2015-04-21T06:44:12.167Z</updated>
+    <updated>2015-04-22T01:50:20.824Z</updated>
     <content type="html"><![CDATA[<h1 id="javascript异步编程读书笔记之事件机制">javascript异步编程读书笔记之事件机制</h1><h2 id="事件的调度">事件的调度</h2><ul>
 <li>异步执行</li>
 </ul>
@@ -73,6 +75,8 @@
     
       <category term="异步" scheme="http://jeffsui.github.io/tags/%E5%BC%82%E6%AD%A5/"/>
     
+      <category term="javascript" scheme="http://jeffsui.github.io/categories/javascript/"/>
+    
   </entry>
   
   <entry>
@@ -80,7 +84,7 @@
     <link href="http://jeffsui.github.io/2015/04/20/use-shorturl-and-two-dimensional-barcodes-to-beautify-blog/"/>
     <id>http://jeffsui.github.io/2015/04/20/use-shorturl-and-two-dimensional-barcodes-to-beautify-blog/</id>
     <published>2015-04-20T07:37:14.000Z</published>
-    <updated>2015-04-20T07:55:07.864Z</updated>
+    <updated>2015-04-22T01:51:42.339Z</updated>
     <content type="html"><![CDATA[<h1 id="如何使用短网址和二维码简化网站访问">如何使用短网址和二维码简化网站访问</h1><ol>
 <li>短网址(shorturl)<br> web2.0时代的潮流,借助短网址您可以用简短的网址替代原来冗长的网址，让使用者可以更容易的分享链接。<br>这里我使用的是百度的短网址服务:<a href="http://dwz.cn/" title="百度短网址" target="_blank" rel="external">http://dwz.cn/</a><ol>
 <li>访问<a href="http://dwz.cn/主页" target="_blank" rel="external">http://dwz.cn/主页</a><br><img src="http://7xindo.com1.z0.glb.clouddn.com/百度短网址.png" alt=""></li>
@@ -112,6 +116,8 @@
     
       <category term="美化" scheme="http://jeffsui.github.io/tags/%E7%BE%8E%E5%8C%96/"/>
     
+      <category term="搭建博客" scheme="http://jeffsui.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    
   </entry>
   
   <entry>
@@ -119,7 +125,7 @@
     <link href="http://jeffsui.github.io/2015/04/17/push-hexo-to-github/"/>
     <id>http://jeffsui.github.io/2015/04/17/push-hexo-to-github/</id>
     <published>2015-04-17T08:35:31.000Z</published>
-    <updated>2015-04-20T00:29:33.012Z</updated>
+    <updated>2015-04-22T01:50:39.454Z</updated>
     <content type="html"><![CDATA[<h1 id="如何使用hexo在github上建立静态博客">如何使用hexo在github上建立静态博客</h1><h2 id="环境搭建">环境搭建</h2><ol>
 <li><p>hexo环境搭建</p>
 <p> 请参考 hexo.io <a href="http://hexo.io/" title="官方站点" target="_blank" rel="external">官方站点</a>,<br> <strong>强烈建议</strong>给<em>基本操作</em>下的内容快速浏览一遍,下面的操作是我一个一个命令敲出来的,遇到的坑也会记录下来,希望大家能少走弯路。</p>
@@ -191,6 +197,8 @@
     
       <category term="笔记" scheme="http://jeffsui.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
+      <category term="hexo" scheme="http://jeffsui.github.io/categories/hexo/"/>
+    
   </entry>
   
   <entry>
@@ -198,7 +206,7 @@
     <link href="http://jeffsui.github.io/2015/04/17/sublime-run-slow-problem/"/>
     <id>http://jeffsui.github.io/2015/04/17/sublime-run-slow-problem/</id>
     <published>2015-04-17T06:49:18.000Z</published>
-    <updated>2015-04-21T01:47:37.133Z</updated>
+    <updated>2015-04-22T01:50:57.304Z</updated>
     <content type="html"><![CDATA[<h1 id="解决sublime_Text2运行缓慢的方法">解决sublime Text2运行缓慢的方法</h1><p>今天打开<code>sublime</code>想写博客发现整个页面打开很慢,切换tab要等好几秒。<br>发现了一个帖子,说<code>GitGutter</code>这个插件在st2下会影响切换tab速度。</p>
 <p>于是 <code>ctrl+shift+p</code>调出命令,remove package,选择<code>GitGutter</code>,回车。<br>重启sublime,世界都变得清静了。</p>
 ]]></content>
@@ -210,6 +218,8 @@
     
       <category term="sublime" scheme="http://jeffsui.github.io/tags/sublime/"/>
     
+      <category term="工具篇" scheme="http://jeffsui.github.io/categories/%E5%B7%A5%E5%85%B7%E7%AF%87/"/>
+    
   </entry>
   
   <entry>
@@ -217,13 +227,15 @@
     <link href="http://jeffsui.github.io/2015/04/17/first-blog/"/>
     <id>http://jeffsui.github.io/2015/04/17/first-blog/</id>
     <published>2015-04-17T05:39:23.000Z</published>
-    <updated>2015-04-17T09:14:29.381Z</updated>
+    <updated>2015-04-22T01:49:48.516Z</updated>
     <content type="html"><![CDATA[<h1 id="第一个博客">第一个博客</h1><h2 id="记录使用hexo的各种填坑。">记录使用hexo的各种填坑。</h2>]]></content>
     <summary type="html">
     <![CDATA[<h1 id="第一个博客">第一个博客</h1><h2 id="记录使用hexo的各种填坑。">记录使用hexo的各种填坑。</h2>]]>
     </summary>
     
       <category term="杂记" scheme="http://jeffsui.github.io/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+      <category term="搭建博客" scheme="http://jeffsui.github.io/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
     
   </entry>
   
