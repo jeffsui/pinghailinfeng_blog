@@ -4,7 +4,7 @@
   
   <link href="/pinghailinfeng_blog/atom.xml" rel="self"/>
   <link href="http://jeffsui.github.io/"/>
-  <updated>2015-04-23T06:28:31.916Z</updated>
+  <updated>2015-05-15T08:18:45.457Z</updated>
   <id>http://jeffsui.github.io/</id>
   
   <author>
@@ -13,6 +13,63 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[nodejs learning 01]]></title>
+    <link href="http://jeffsui.github.io/2015/05/14/nodejs-learning-01/"/>
+    <id>http://jeffsui.github.io/2015/05/14/nodejs-learning-01/</id>
+    <published>2015-05-14T06:26:26.000Z</published>
+    <updated>2015-05-15T08:18:45.457Z</updated>
+    <content type="html"><![CDATA[<h1 id="前言">前言</h1><ul>
+<li><p>nodejs是什么？</p>
+<p>  nodejs是让javascript在服务器端运行的平台</p>
+</li>
+<li>特点:</li>
+</ul>
+<ol>
+<li><p>异步、非阻塞方式<br> 所有的函数都是异步的,这个将在下面的学习中体会到</p>
+</li>
+<li><p>事件回调机制</p>
+</li>
+</ol>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.query(<span class="string">"select * from some_table"</span>,<span class="function"><span class="keyword">function</span><span class="params">(res)</span></span>&#123;</span><br><span class="line">	  res.output();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>单线程</li>
+</ol>
+<h1 id="CommonJS">CommonJS</h1><p>nodejs是参照<code>CommonJS</code>规范实现的,所以不得不探讨CommonJS规范。<br>简单说,<code>CommonJS</code>提供一个全局性方法<code>require(&#39;module_name&#39;)</code>，用于加载模块。</p>
+<h1 id="安装与配置">安装与配置</h1><h2 id="windows篇">windows篇</h2><p>这里不得不提到几个基本概念,请移步至这里扫盲。</p>
+<p>nvm是一个linux下的管理nodejs版本的工具,<br>nvmw是windows上的移植版本。如果你只是在<code>windows</code>上研究<code>nodejs</code>,那么请用<code>nvmw</code>管理你的node版本。</p>
+<h3 id="获取nvmw">获取nvmw</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ d:</span><br><span class="line">$ cd git</span><br><span class="line">$ git clone https:<span class="comment">//github.com/cnpm/nvmw.git</span></span><br><span class="line">```	</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">###设置环境变量</span></span><br><span class="line"></span><br><span class="line">`<span class="keyword">set</span> <span class="string">"PATH=d:\git\nvmw;%PATH%"</span>`</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="preprocessor">###重新打开终端,输入`nvmw`</span></span><br></pre></td></tr></table></figure>
+<p>Node Version Manager for Windows</p>
+<p>Usage:<br>  nvmw help                          Show this message<br>  nvmw install [version] [arch]      Download and install a [version]<br>                                       for [arch] architecture (optional)<br>  nvmw uninstall [version]           Uninstall a [version]<br>  nvmw use [version]                 Modify PATH to use [version]<br>  nvmw ls                            List installed versions</p>
+<p>Example:<br>  nvmw install v0.10.21        Install a specific version number of node.js<br>  nvmw use v0.10.21            Use the specific version<br>  nvmw install iojs            Install the latest version of io.js<br>  nvmw install iojs-v1.0.2     Install a specific version number of io.js<br>  nvmw use iojs-v1.0.2         Use the specific version io.js</p>
+<p>  nvmw install v0.10.35 x86    Install a 32-bit version</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">###通过 <span class="escape">`n</span>vmw<span class="escape">` </span>安装任意版本的 <span class="escape">`n</span>ode<span class="escape">`</span><br><span class="line"></span></span><br><span class="line"><span class="escape">`n</span>vmw install v0.<span class="number">12.2</span> node<span class="escape">`</span><br><span class="line"></span></span><br><span class="line"></span><br><span class="line">#一个httpserver例子</span><br><span class="line"></span><br><span class="line">新建一个myServer.js,代码如下</span><br></pre></td></tr></table></figure>
+<p>var http = require(“http”);<br>  http.createServer(function(request, response){<br>  response.writeHead(200,{“Content-Type”:”text/plain”});<br>  response.write(“Hello World”);<br>  response.end();<br>}).listen(8888);</p>
+<p>```</p>
+<p>命令行执行<code>node myServer.js</code></p>
+<p>访问 <a href="http://localhost:8888/" target="_blank" rel="external">http://localhost:8888/</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="前言">前言</h1><ul>
+<li><p>nodejs是什么？</p>
+<p>  nodejs是让javascript在服务器端运行的平台</p>
+</li>
+<li>特点:</li>
+</ul>
+<ol>
+<li><p>异步、非阻塞方式<br> 所有的函数都]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://jeffsui.github.io/tags/javascript/"/>
+    
+      <category term="nodejs" scheme="http://jeffsui.github.io/tags/nodejs/"/>
+    
+      <category term="读书笔记" scheme="http://jeffsui.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="javascript" scheme="http://jeffsui.github.io/categories/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[javascript oop 15 min programming]]></title>
