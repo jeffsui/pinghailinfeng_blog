@@ -4,25 +4,34 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>sublime run slow problem | 凭海临风的测试江湖</title>
+    <title>how to run 2 mysql instance in one server | 凭海临风的测试江湖</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jeff Sui">
     
 
     
-    <meta name="description" content="解决sublime Text2运行缓慢的方法今天打开sublime想写博客发现整个页面打开很慢,切换tab要等好几秒。发现了一个帖子,说GitGutter这个插件在st2下会影响切换tab速度。
-于是 ctrl+shift+p调出命令,remove package,选择GitGutter,回车。重启sublime,世界都变得清静了。">
+    <meta name="description" content="centos下如何同时运行两个mysql实例1.背景由于使用了gitlab一键包,所以本机已经启动了一个mysql实例,端口号为:33061
+现在需要启动另一个mysql实例,启动报错
+运行命令service mysqld start
+1MySQL错误Another MySQL daemon already running with the same unix socket.
+2.分析因为已经有一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sublime run slow problem">
-<meta property="og:url" content="http://jeffsui.github.io/2015/04/17/sublime-run-slow-problem/index.html">
+<meta property="og:title" content="how to run 2 mysql instance in one server">
+<meta property="og:url" content="http://jeffsui.github.io/2015/05/20/how-to-run-2-mysql-instance-in-one-server/index.html">
 <meta property="og:site_name" content="凭海临风的测试江湖">
-<meta property="og:description" content="解决sublime Text2运行缓慢的方法今天打开sublime想写博客发现整个页面打开很慢,切换tab要等好几秒。发现了一个帖子,说GitGutter这个插件在st2下会影响切换tab速度。
-于是 ctrl+shift+p调出命令,remove package,选择GitGutter,回车。重启sublime,世界都变得清静了。">
+<meta property="og:description" content="centos下如何同时运行两个mysql实例1.背景由于使用了gitlab一键包,所以本机已经启动了一个mysql实例,端口号为:33061
+现在需要启动另一个mysql实例,启动报错
+运行命令service mysqld start
+1MySQL错误Another MySQL daemon already running with the same unix socket.
+2.分析因为已经有一">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sublime run slow problem">
-<meta name="twitter:description" content="解决sublime Text2运行缓慢的方法今天打开sublime想写博客发现整个页面打开很慢,切换tab要等好几秒。发现了一个帖子,说GitGutter这个插件在st2下会影响切换tab速度。
-于是 ctrl+shift+p调出命令,remove package,选择GitGutter,回车。重启sublime,世界都变得清静了。">
+<meta name="twitter:title" content="how to run 2 mysql instance in one server">
+<meta name="twitter:description" content="centos下如何同时运行两个mysql实例1.背景由于使用了gitlab一键包,所以本机已经启动了一个mysql实例,端口号为:33061
+现在需要启动另一个mysql实例,启动报错
+运行命令service mysqld start
+1MySQL错误Another MySQL daemon already running with the same unix socket.
+2.分析因为已经有一">
 
     
     <link rel="alternative" href="/atom.xml" title="凭海临风的测试江湖" type="application/atom+xml">
@@ -232,14 +241,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/pinghailinfeng_blog/2015/04/17/sublime-run-slow-problem/" title="sublime run slow problem" itemprop="url">sublime run slow problem</a>
+      <a href="/pinghailinfeng_blog/2015/05/20/how-to-run-2-mysql-instance-in-one-server/" title="how to run 2 mysql instance in one server" itemprop="url">how to run 2 mysql instance in one server</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/pinghailinfeng_blog/about" title="Jeff Sui" target="_blank" itemprop="author">Jeff Sui</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-17T06:49:18.000Z" itemprop="datePublished"> 发表于 2015-04-17</time>
+    <time datetime="2015-05-20T07:50:30.000Z" itemprop="datePublished"> 发表于 2015-05-20</time>
     
   </p>
 </header>
@@ -248,12 +257,34 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#解决sublime_Text2运行缓慢的方法"><span class="toc-number">1.</span> <span class="toc-text">解决sublime Text2运行缓慢的方法</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#centos下如何同时运行两个mysql实例"><span class="toc-number">1.</span> <span class="toc-text">centos下如何同时运行两个mysql实例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-背景"><span class="toc-number">2.</span> <span class="toc-text">1.背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-分析"><span class="toc-number">3.</span> <span class="toc-text">2.分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-解决方案"><span class="toc-number">4.</span> <span class="toc-text">3.解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1_创建新实例的数据目录"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 创建新实例的数据目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2_创建数据库"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 创建数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3_配置文件"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4_启动mysql服务"><span class="toc-number">4.4.</span> <span class="toc-text">3.4 启动mysql服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5_查看当前mysql端口占用"><span class="toc-number">4.5.</span> <span class="toc-text">3.5 查看当前mysql端口占用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6_本地登陆mysql数据库"><span class="toc-number">4.6.</span> <span class="toc-text">3.6 本地登陆mysql数据库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-_遇到的问题"><span class="toc-number">5.</span> <span class="toc-text">4. 遇到的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1_本地无法登陆mysql"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 本地无法登陆mysql</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-_参考博文"><span class="toc-number">6.</span> <span class="toc-text">5. 参考博文</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="解决sublime_Text2运行缓慢的方法">解决sublime Text2运行缓慢的方法</h1><p>今天打开<code>sublime</code>想写博客发现整个页面打开很慢,切换tab要等好几秒。<br>发现了一个帖子,说<code>GitGutter</code>这个插件在st2下会影响切换tab速度。</p>
-<p>于是 <code>ctrl+shift+p</code>调出命令,remove package,选择<code>GitGutter</code>,回车。<br>重启sublime,世界都变得清静了。</p>
+		<h1 id="centos下如何同时运行两个mysql实例">centos下如何同时运行两个mysql实例</h1><h1 id="1-背景">1.背景</h1><pre><code>由于使用了<span class="tag">gitlab</span>一键包,所以本机已经启动了一个<span class="tag">mysql</span>实例,端口号为<span class="pseudo">:33061</span>
+现在需要启动另一个<span class="tag">mysql</span>实例,启动报错
+</code></pre><p>运行命令<code>service mysqld start</code></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MySQL错误Another MySQL daemon already running <span class="operator">with</span> <span class="operator">the</span> same unix <span class="built_in">socket</span>.</span><br></pre></td></tr></table></figure>
+<h1 id="2-分析">2.分析</h1><p>因为已经有一个mysql实例启动,所用的SOCKET连接文件位于/tmp/mysql.sock,因此再启动mysqld会发现该文件已经被使用,才会报上面的错误。</p>
+<h1 id="3-解决方案">3.解决方案</h1><h2 id="3-1_创建新实例的数据目录">3.1 创建新实例的数据目录</h2><p>此处我创建的实例路径为:<code>/var/lib/mysql2</code><br>并且给该目录分配mysql用户权限 <code>chown -R mysql /var/lib/mysql2</code></p>
+<h2 id="3-2_创建数据库">3.2 创建数据库</h2><p>刚刚建立的目录下面，初始化数据库。</p>
+<p><code>/usr/bin/mysql_install_db --user=mysql --datadir=/var/lib/mysql2</code></p>
+<p>将mysql等系统数据库安装到实例准备运行的目录。</p>
+<h2 id="3-3_配置文件">3.3 配置文件</h2><p>我自己的配置文件,路径在<code>/etc/my.cnf</code><br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[mysqld_multi]</span><br><span class="line">mysqld = <span class="regexp">/usr/</span>mysql<span class="regexp">/bin/</span>mysqld_safe</span><br><span class="line">mysqladmin = <span class="regexp">/usr/</span>mysql<span class="regexp">/bin/</span>mysqladmin</span><br><span class="line">user = root</span><br><span class="line">[mysqld]</span><br><span class="line">datadir=<span class="regexp">/var/</span>lib/mysql2</span><br><span class="line">socket=<span class="regexp">/var/</span>lib<span class="regexp">/mysql2/</span>mysql.sock</span><br><span class="line">user=mysql</span><br><span class="line">skip-grant-tables</span><br><span class="line"># Disabling symbolic-links is recommended to prevent assorted security risks</span><br><span class="line">symbolic-links=<span class="number">0</span></span><br><span class="line"></span><br><span class="line">[mysqld_safe]</span><br><span class="line">log-error=<span class="regexp">/var/</span>log/mysqld2.log</span><br><span class="line">pid-file=<span class="regexp">/var/</span>run<span class="regexp">/mysqld/</span>mysqld.pid</span><br><span class="line">[client]</span><br><span class="line">socket = <span class="regexp">/var/</span>lib<span class="regexp">/mysql2/</span>mysql.sock</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-4_启动mysql服务">3.4 启动mysql服务</h2><p><code>service mysqld start</code><br>哇咔咔 成功了！</p>
+<h2 id="3-5_查看当前mysql端口占用">3.5 查看当前mysql端口占用</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">netstat</span> -alntp |grep mysql</span><br><span class="line">tcp        <span class="number">0</span>      <span class="number">0</span> <span class="number">0.0.0.0:3306</span>                <span class="number">0.0.0.0</span>:*                   LISTEN      <span class="number">27900</span>/mysqld        </span><br><span class="line">tcp        <span class="number">0</span>      <span class="number">0</span> <span class="number">127.0.0.1:33061</span>             <span class="number">0.0.0.0</span>:*                   LISTEN      <span class="number">19135</span>/mysqld.bin</span><br></pre></td></tr></table></figure>
+<h2 id="3-6_本地登陆mysql数据库">3.6 本地登陆mysql数据库</h2><p><code>mysql -uroot -p</code> 回车</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> mysql -uroot -p</span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQ<span class="class">L monitor.  Commands end with ;</span><span class="instruction"> or </span>\g.</span><br><span class="line">Your MySQL connection id is 2</span><br><span class="line">Server version: 5.1.71 Source distribution</span><br><span class="line"></span><br><span class="line">Copyright<span class="function"> (</span>c<span class="function">)</span> 2000, 2013, Oracle<span class="instruction"> and/or </span>its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation<span class="instruction"> and/or </span>its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type 'help;'<span class="instruction"> or </span>'\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="4-_遇到的问题">4. 遇到的问题</h1><h2 id="4-1_本地无法登陆mysql">4.1 本地无法登陆mysql</h2><p>提示:<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RROR <span class="number">2002</span> (HY000): Can’t connect <span class="keyword">to</span> <span class="keyword">local</span> MySQL server <span class="keyword">through</span> socket ‘/var/lib/mysql/mysql.sock’ (<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<p>检查配置文件<code>my.cnf</code>，最后加入<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">socket = <span class="regexp">/var/lib</span><span class="regexp">/mysql2/mysql</span>.sock</span><br></pre></td></tr></table></figure></p>
+<p>重启服务后,解决。</p>
+<h1 id="5-_参考博文">5. 参考博文</h1><ul>
+<li><p><a href="http://www.linuxidc.com/Linux/2012-09/71141.htm" target="_blank" rel="external">http://www.linuxidc.com/Linux/2012-09/71141.htm</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/eoiioe/archive/2008/12/28/1363947.html" target="_blank" rel="external">http://www.cnblogs.com/eoiioe/archive/2008/12/28/1363947.html</a></p>
+</li>
+<li><a href="http://blog.csdn.net/swengineer/article/details/6239711" target="_blank" rel="external">http://blog.csdn.net/swengineer/article/details/6239711</a></li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -261,13 +292,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/pinghailinfeng_blog/categories/工具篇/">工具篇</a>
+  <a class="article-category-link" href="/pinghailinfeng_blog/categories/mysql/">mysql</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/pinghailinfeng_blog/tags/GitGutter/">GitGutter</a><a href="/pinghailinfeng_blog/tags/sublime/">sublime</a>
+  <span></span> <a href="/pinghailinfeng_blog/tags/centos/">centos</a><a href="/pinghailinfeng_blog/tags/mysql/">mysql</a>
   </div>
 
 </div>
@@ -276,7 +307,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://jeffsui.github.io/2015/04/17/sublime-run-slow-problem/" data-title="sublime run slow problem | 凭海临风的测试江湖" data-tsina="null" class="share clearfix">
+	  <div data-url="http://jeffsui.github.io/2015/05/20/how-to-run-2-mysql-instance-in-one-server/" data-title="how to run 2 mysql instance in one server | 凭海临风的测试江湖" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -289,19 +320,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/pinghailinfeng_blog/2015/04/17/push-hexo-to-github/" title="push-hexo-to-github">
-  <strong>上一篇：</strong><br/>
-  <span>
-  push-hexo-to-github</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/pinghailinfeng_blog/2015/04/17/first-blog/"  title="first-blog">
+<a href="/pinghailinfeng_blog/2015/05/14/nodejs-learning-01/"  title="nodejs learning 01">
  <strong>下一篇：</strong><br/> 
- <span>first-blog
+ <span>nodejs learning 01
 </span>
 </a>
 </div>
@@ -310,7 +333,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/04/17/sublime-run-slow-problem/" data-title="sublime run slow problem" data-url="http://jeffsui.github.io/2015/04/17/sublime-run-slow-problem/"></div>
+	<div class="ds-thread" data-thread-key="2015/05/20/how-to-run-2-mysql-instance-in-one-server/" data-title="how to run 2 mysql instance in one server" data-url="http://jeffsui.github.io/2015/05/20/how-to-run-2-mysql-instance-in-one-server/"></div>
 </section>
 
 
@@ -320,7 +343,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#解决sublime_Text2运行缓慢的方法"><span class="toc-number">1.</span> <span class="toc-text">解决sublime Text2运行缓慢的方法</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#centos下如何同时运行两个mysql实例"><span class="toc-number">1.</span> <span class="toc-text">centos下如何同时运行两个mysql实例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-背景"><span class="toc-number">2.</span> <span class="toc-text">1.背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-分析"><span class="toc-number">3.</span> <span class="toc-text">2.分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-解决方案"><span class="toc-number">4.</span> <span class="toc-text">3.解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1_创建新实例的数据目录"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 创建新实例的数据目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2_创建数据库"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 创建数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3_配置文件"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4_启动mysql服务"><span class="toc-number">4.4.</span> <span class="toc-text">3.4 启动mysql服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5_查看当前mysql端口占用"><span class="toc-number">4.5.</span> <span class="toc-text">3.5 查看当前mysql端口占用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6_本地登陆mysql数据库"><span class="toc-number">4.6.</span> <span class="toc-text">3.6 本地登陆mysql数据库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-_遇到的问题"><span class="toc-number">5.</span> <span class="toc-text">4. 遇到的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1_本地无法登陆mysql"><span class="toc-number">5.1.</span> <span class="toc-text">4.1 本地无法登陆mysql</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-_参考博文"><span class="toc-number">6.</span> <span class="toc-text">5. 参考博文</span></a></li></ol>
  
   </div>
 

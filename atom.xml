@@ -4,7 +4,7 @@
   
   <link href="/pinghailinfeng_blog/atom.xml" rel="self"/>
   <link href="http://jeffsui.github.io/"/>
-  <updated>2015-05-15T08:18:45.457Z</updated>
+  <updated>2015-05-20T07:56:49.699Z</updated>
   <id>http://jeffsui.github.io/</id>
   
   <author>
@@ -15,11 +15,54 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[how to run 2 mysql instance in one server]]></title>
+    <link href="http://jeffsui.github.io/2015/05/20/how-to-run-2-mysql-instance-in-one-server/"/>
+    <id>http://jeffsui.github.io/2015/05/20/how-to-run-2-mysql-instance-in-one-server/</id>
+    <published>2015-05-20T07:50:30.000Z</published>
+    <updated>2015-05-20T07:56:49.699Z</updated>
+    <content type="html"><![CDATA[<h1 id="centos下如何同时运行两个mysql实例">centos下如何同时运行两个mysql实例</h1><h1 id="1-背景">1.背景</h1><pre><code>由于使用了<span class="tag">gitlab</span>一键包,所以本机已经启动了一个<span class="tag">mysql</span>实例,端口号为<span class="pseudo">:33061</span>
+现在需要启动另一个<span class="tag">mysql</span>实例,启动报错
+</code></pre><p>运行命令<code>service mysqld start</code></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MySQL错误Another MySQL daemon already running <span class="operator">with</span> <span class="operator">the</span> same unix <span class="built_in">socket</span>.</span><br></pre></td></tr></table></figure>
+<h1 id="2-分析">2.分析</h1><p>因为已经有一个mysql实例启动,所用的SOCKET连接文件位于/tmp/mysql.sock,因此再启动mysqld会发现该文件已经被使用,才会报上面的错误。</p>
+<h1 id="3-解决方案">3.解决方案</h1><h2 id="3-1_创建新实例的数据目录">3.1 创建新实例的数据目录</h2><p>此处我创建的实例路径为:<code>/var/lib/mysql2</code><br>并且给该目录分配mysql用户权限 <code>chown -R mysql /var/lib/mysql2</code></p>
+<h2 id="3-2_创建数据库">3.2 创建数据库</h2><p>刚刚建立的目录下面，初始化数据库。</p>
+<p><code>/usr/bin/mysql_install_db --user=mysql --datadir=/var/lib/mysql2</code></p>
+<p>将mysql等系统数据库安装到实例准备运行的目录。</p>
+<h2 id="3-3_配置文件">3.3 配置文件</h2><p>我自己的配置文件,路径在<code>/etc/my.cnf</code><br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[mysqld_multi]</span><br><span class="line">mysqld = <span class="regexp">/usr/</span>mysql<span class="regexp">/bin/</span>mysqld_safe</span><br><span class="line">mysqladmin = <span class="regexp">/usr/</span>mysql<span class="regexp">/bin/</span>mysqladmin</span><br><span class="line">user = root</span><br><span class="line">[mysqld]</span><br><span class="line">datadir=<span class="regexp">/var/</span>lib/mysql2</span><br><span class="line">socket=<span class="regexp">/var/</span>lib<span class="regexp">/mysql2/</span>mysql.sock</span><br><span class="line">user=mysql</span><br><span class="line">skip-grant-tables</span><br><span class="line"># Disabling symbolic-links is recommended to prevent assorted security risks</span><br><span class="line">symbolic-links=<span class="number">0</span></span><br><span class="line"></span><br><span class="line">[mysqld_safe]</span><br><span class="line">log-error=<span class="regexp">/var/</span>log/mysqld2.log</span><br><span class="line">pid-file=<span class="regexp">/var/</span>run<span class="regexp">/mysqld/</span>mysqld.pid</span><br><span class="line">[client]</span><br><span class="line">socket = <span class="regexp">/var/</span>lib<span class="regexp">/mysql2/</span>mysql.sock</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-4_启动mysql服务">3.4 启动mysql服务</h2><p><code>service mysqld start</code><br>哇咔咔 成功了！</p>
+<h2 id="3-5_查看当前mysql端口占用">3.5 查看当前mysql端口占用</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">netstat</span> -alntp |grep mysql</span><br><span class="line">tcp        <span class="number">0</span>      <span class="number">0</span> <span class="number">0.0.0.0:3306</span>                <span class="number">0.0.0.0</span>:*                   LISTEN      <span class="number">27900</span>/mysqld        </span><br><span class="line">tcp        <span class="number">0</span>      <span class="number">0</span> <span class="number">127.0.0.1:33061</span>             <span class="number">0.0.0.0</span>:*                   LISTEN      <span class="number">19135</span>/mysqld.bin</span><br></pre></td></tr></table></figure>
+<h2 id="3-6_本地登陆mysql数据库">3.6 本地登陆mysql数据库</h2><p><code>mysql -uroot -p</code> 回车</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> mysql -uroot -p</span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQ<span class="class">L monitor.  Commands end with ;</span><span class="instruction"> or </span>\g.</span><br><span class="line">Your MySQL connection id is 2</span><br><span class="line">Server version: 5.1.71 Source distribution</span><br><span class="line"></span><br><span class="line">Copyright<span class="function"> (</span>c<span class="function">)</span> 2000, 2013, Oracle<span class="instruction"> and/or </span>its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation<span class="instruction"> and/or </span>its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type 'help;'<span class="instruction"> or </span>'\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="4-_遇到的问题">4. 遇到的问题</h1><h2 id="4-1_本地无法登陆mysql">4.1 本地无法登陆mysql</h2><p>提示:<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RROR <span class="number">2002</span> (HY000): Can’t connect <span class="keyword">to</span> <span class="keyword">local</span> MySQL server <span class="keyword">through</span> socket ‘/var/lib/mysql/mysql.sock’ (<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<p>检查配置文件<code>my.cnf</code>，最后加入<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">socket = <span class="regexp">/var/lib</span><span class="regexp">/mysql2/mysql</span>.sock</span><br></pre></td></tr></table></figure></p>
+<p>重启服务后,解决。</p>
+<h1 id="5-_参考博文">5. 参考博文</h1><ul>
+<li><p><a href="http://www.linuxidc.com/Linux/2012-09/71141.htm" target="_blank" rel="external">http://www.linuxidc.com/Linux/2012-09/71141.htm</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/eoiioe/archive/2008/12/28/1363947.html" target="_blank" rel="external">http://www.cnblogs.com/eoiioe/archive/2008/12/28/1363947.html</a></p>
+</li>
+<li><a href="http://blog.csdn.net/swengineer/article/details/6239711" target="_blank" rel="external">http://blog.csdn.net/swengineer/article/details/6239711</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="centos下如何同时运行两个mysql实例">centos下如何同时运行两个mysql实例</h1><h1 id="1-背景">1.背景</h1><pre><code>由于使用了<span class="tag">gitlab</span>一键包,所以本机已经启]]>
+    </summary>
+    
+      <category term="centos" scheme="http://jeffsui.github.io/tags/centos/"/>
+    
+      <category term="mysql" scheme="http://jeffsui.github.io/tags/mysql/"/>
+    
+      <category term="mysql" scheme="http://jeffsui.github.io/categories/mysql/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[nodejs learning 01]]></title>
     <link href="http://jeffsui.github.io/2015/05/14/nodejs-learning-01/"/>
     <id>http://jeffsui.github.io/2015/05/14/nodejs-learning-01/</id>
     <published>2015-05-14T06:26:26.000Z</published>
-    <updated>2015-05-15T08:18:45.457Z</updated>
+    <updated>2015-05-18T07:42:38.336Z</updated>
     <content type="html"><![CDATA[<h1 id="前言">前言</h1><ul>
 <li><p>nodejs是什么？</p>
 <p>  nodejs是让javascript在服务器端运行的平台</p>
@@ -32,7 +75,6 @@
 <li><p>事件回调机制</p>
 </li>
 </ol>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.query(<span class="string">"select * from some_table"</span>,<span class="function"><span class="keyword">function</span><span class="params">(res)</span></span>&#123;</span><br><span class="line">	  res.output();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol>
 <li>单线程</li>
 </ol>
