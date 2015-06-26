@@ -4,7 +4,7 @@
   
   <link href="/pinghailinfeng_blog/atom.xml" rel="self"/>
   <link href="http://jeffsui.github.io/"/>
-  <updated>2015-05-20T07:56:49.699Z</updated>
+  <updated>2015-06-26T09:28:21.623Z</updated>
   <id>http://jeffsui.github.io/</id>
   
   <author>
@@ -13,6 +13,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[sonar-environment-setup]]></title>
+    <link href="http://jeffsui.github.io/2015/06/26/sonar-environment-setup/"/>
+    <id>http://jeffsui.github.io/2015/06/26/sonar-environment-setup/</id>
+    <published>2015-06-26T09:26:55.000Z</published>
+    <updated>2015-06-26T09:28:21.623Z</updated>
+    <content type="html"><![CDATA[<h1 id="sonar环境搭建简明手册">sonar环境搭建简明手册</h1><h2 id="1-sonar简介">1.sonar简介</h2><p><strong>SONAR</strong>是一个开源代码质量检查平台,根据官方的说明</p>
+<blockquote>
+<p>sonar用于提高软件质量,提高你的开发团队效率,采用持续检查的方法……<br>支持c/c++,java,php,ruby,javascript,python,object c…等众多语言</p>
+</blockquote>
+<h2 id="2-安装包">2.安装包</h2><p>获取安装包:<code>sonarqube-4.3.3.zip</code>和<code>sonar-runner-dist-2.4.zip</code></p>
+<h2 id="3-环境要求">3.环境要求</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdk1.6+</span><br></pre></td></tr></table></figure>
+<p>运行时内存最少512M,分析内存2g以上(建议)。吃内存厉害！</p>
+<h2 id="4-安装步骤">4.安装步骤</h2><ul>
+<li><p>jdk环境1.6+</p>
+</li>
+<li><p>解压sonar安装包</p>
+</li>
+</ul>
+<p><strong>注意路径中不能含有中文</strong></p>
+<p>执行<br><code>{sonar_home}/bin/windows-x86-64/StartSonar.bat</code></p>
+<p>如果发现启动成功字样</p>
+<p>访问下面的地址:<code>http://localhost:9000</code></p>
+<h2 id="5-修改配置">5.修改配置</h2><p>首先,sonar默认的数据库是derby,在生产环境我们肯定要选择自己的数据库。还好sonar支持的数据库很多,这里我们选择mysql数据库。</p>
+<ul>
+<li>创建数据库</li>
+<li><p>创建用户并赋予权限<br>启动mysql服务,命令行登陆,执行下面的脚本:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> sonar <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci;</span></span><br><span class="line"> </span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">'sonar'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'sonar'</span>;</span></span><br><span class="line"><span class="operator"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> <span class="keyword">ON</span> sonar.* <span class="keyword">TO</span> <span class="string">'sonar'</span>@<span class="string">'%'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'sonar'</span>;</span></span><br><span class="line"><span class="operator"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> <span class="keyword">ON</span> sonar.* <span class="keyword">TO</span> <span class="string">'sonar'</span>@<span class="string">'localhost'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'sonar'</span>;</span></span><br><span class="line"><span class="operator"><span class="keyword">FLUSH</span> <span class="keyword">PRIVILEGES</span>;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改下面的文件</p>
+</li>
+</ul>
+<p>`{sonar_home}/conf/sonar.properties</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># Permissions to <span class="operator"><span class="keyword">create</span> <span class="keyword">tables</span>, indices <span class="keyword">and</span> <span class="keyword">triggers</span> must be granted <span class="keyword">to</span> JDBC <span class="keyword">user</span>.</span><br><span class="line"># The <span class="keyword">schema</span> must be created <span class="keyword">first</span>.</span><br><span class="line">sonar.jdbc.username=sonar</span><br><span class="line">sonar.jdbc.<span class="keyword">password</span>=sonar</span><br><span class="line"></span><br><span class="line">#<span class="comment">----- MySQL 5.x</span></span><br><span class="line"># Comment the embedded <span class="keyword">database</span> <span class="keyword">and</span> uncomment the following line <span class="keyword">to</span> <span class="keyword">use</span> MySQL</span><br><span class="line">sonar.jdbc.url=jdbc:mysql://localhost:<span class="number">3306</span>/sonar?useUnicode=<span class="literal">true</span>&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=<span class="literal">true</span></span><br><span class="line">#<span class="comment">--------------------------------------------------------------------------------------------------</span></span><br><span class="line"># WEB <span class="keyword">SERVER</span></span><br><span class="line"></span><br><span class="line"># Binding IP address. <span class="keyword">For</span> servers <span class="keyword">with</span> more than one IP address, this property specifies which</span><br><span class="line"># address will be used <span class="keyword">for</span> listening <span class="keyword">on</span> the specified ports.</span><br><span class="line"># <span class="keyword">By</span> <span class="keyword">default</span>, ports will be used <span class="keyword">on</span> <span class="keyword">all</span> IP addresses associated <span class="keyword">with</span> the <span class="keyword">server</span>.</span><br><span class="line">sonar.web.host=localhost</span><br><span class="line"></span><br><span class="line"># Web context. <span class="keyword">When</span> <span class="keyword">set</span>, it must <span class="keyword">start</span> <span class="keyword">with</span> forward slash (<span class="keyword">for</span> example /sonarqube).</span><br><span class="line"># The <span class="keyword">default</span> <span class="keyword">value</span> <span class="keyword">is</span> root context (empty <span class="keyword">value</span>).</span><br><span class="line">sonar.web.context=/sonar</span><br><span class="line"></span><br><span class="line"># TCP port <span class="keyword">for</span> incoming HTTP connections. Disabled <span class="keyword">when</span> <span class="keyword">value</span> <span class="keyword">is</span> -<span class="number">1.</span></span><br><span class="line">sonar.web.port=<span class="number">9000</span></span></span><br></pre></td></tr></table></figure>
+<p>说明:<br>参数1:sonar数据库的用户名密码<br>参数2:sonar数据库的连接字符串<br>参数3:配置web访问的ip地址或域名<br>参数4:默认上下文路径 /<br>第五个参数是启用的端口</p>
+<p>重启sonar,发现数据库中已经自动创建了表,证明mysql数据库配置成功。</p>
+<h2 id="6-汉化">6.汉化</h2><p>插件目录<br><code>{sonar_home}</code>/extensions/plugins<br>将<code>sonar-l10n-zh-plugin-1.8.jar</code>放到上面的路径下,重启sonar服务<br>打开页面,汉化成功。</p>
+<h2 id="7-安装配置sonar-runner">7.安装配置sonar-runner</h2><p>sonar-runner是一个提供对项目进行分析的命令行工具,安装和配置非常简单。</p>
+<p>解压缩<code>sonar-runner-dist-2.4.zip</code></p>
+<p>配置环境变量<br>SONAR_RUNNER_HOME=解压路径<br>Path：%SONAR_RUNNER_HOME%\bin;</p>
+<p>同样不能含有中文</p>
+<p>然后在你需要进行代码检查的项目根目录下建立<code>sonar-project.properties</code>,内容如下:</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Required metadata</span></span><br><span class="line">sonar.<span class="variable">projectKey=</span>my:project</span><br><span class="line">sonar.<span class="variable">projectName=</span>kfhx</span><br><span class="line">sonar.<span class="variable">projectVersion=</span><span class="number">1.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Paths to source directories.</span></span><br><span class="line"><span class="comment"># Paths are relative to the sonar-project.properties file. Replace "\" by "/" on Windows.</span></span><br><span class="line"><span class="comment"># Do not put the "sonar-project.properties" file in the same directory with the source code.</span></span><br><span class="line"><span class="comment"># (i.e. never set the "sonar.sources" property to ".")</span></span><br><span class="line">sonar.<span class="variable">sources=</span>f:/bz/kfht</span><br><span class="line"></span><br><span class="line"><span class="comment"># The value of the property must be the key of the language.</span></span><br><span class="line">sonar.<span class="variable">language=</span>c++</span><br><span class="line"></span><br><span class="line"><span class="comment"># Encoding of the source code</span></span><br><span class="line">sonar.<span class="variable">sourceEncoding=</span>UTF-<span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Additional parameters</span></span><br><span class="line">sonar.my.<span class="variable">property=</span>value</span><br></pre></td></tr></table></figure>
+<p><code>sonar.projectKey=</code> 是一个标识,不能重复,否则结果会覆盖<br><code>sonar.sources=</code>需要检查的源码路径<br><code>sonar.language=</code><a href="http://www.sonarsource.com/products/plugins/languages/" target="_blank" rel="external">语言的种类</a><br><code>sonar.sourceEncoding=</code> 项目的编码方式</p>
+<p>命令行下执行:<br><code>sonar-runner</code></p>
+<p>然后就是漫长的等待,分析结束后访问:<code>http://localhost:9000</code><br>就可以看到相关的分析结果。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="sonar环境搭建简明手册">sonar环境搭建简明手册</h1><h2 id="1-sonar简介">1.sonar简介</h2><p><strong>SONAR</strong>是一个开源代码质量检查平台,根据官方的说明</p>
+<blockquote>
+<p]]>
+    </summary>
+    
+      <category term="sonar" scheme="http://jeffsui.github.io/tags/sonar/"/>
+    
+      <category term="质量管理" scheme="http://jeffsui.github.io/categories/%E8%B4%A8%E9%87%8F%E7%AE%A1%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[how to run 2 mysql instance in one server]]></title>
