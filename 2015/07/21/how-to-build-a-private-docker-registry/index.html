@@ -4,49 +4,46 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>push-hexo-to-github | 凭海临风的测试江湖</title>
+    <title>how to build a private docker registry | 凭海临风的测试江湖</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Jeff Sui">
     
 
     
-    <meta name="description" content="如何使用hexo在github上建立静态博客环境搭建
-hexo环境搭建
- 请参考 hexo.io 官方站点, 强烈建议给基本操作下的内容快速浏览一遍,下面的操作是我一个一个命令敲出来的,遇到的坑也会记录下来,希望大家能少走弯路。
+    <meta name="description" content="如何搭建docker私服环境准备软件包：
 
-github上建立静态博客
+centos6.5_x86_64
 
-github账号申请（略）
-建立一个github项目
-git clone 项目地址 到本地
-项目初始化cd 项目名echo # hexo">
+docker-engine-1.7.0-1.el6.x86_64.rpm
+
+
+docker环境搭建,请参照官方说明，本文采用的是官方的rpm包
+何谓私服官方的image镜像站位dockerhub,因为伟大的墙的缘故,所以下载镜像是很痛苦的一件事。当然你可以采用其他科学上网或者镜像加速的方法来获取image。docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="push-hexo-to-github">
-<meta property="og:url" content="http://jeffsui.github.io/2015/04/17/push-hexo-to-github/index.html">
+<meta property="og:title" content="how to build a private docker registry">
+<meta property="og:url" content="http://jeffsui.github.io/2015/07/21/how-to-build-a-private-docker-registry/index.html">
 <meta property="og:site_name" content="凭海临风的测试江湖">
-<meta property="og:description" content="如何使用hexo在github上建立静态博客环境搭建
-hexo环境搭建
- 请参考 hexo.io 官方站点, 强烈建议给基本操作下的内容快速浏览一遍,下面的操作是我一个一个命令敲出来的,遇到的坑也会记录下来,希望大家能少走弯路。
+<meta property="og:description" content="如何搭建docker私服环境准备软件包：
 
-github上建立静态博客
+centos6.5_x86_64
 
-github账号申请（略）
-建立一个github项目
-git clone 项目地址 到本地
-项目初始化cd 项目名echo # hexo">
+docker-engine-1.7.0-1.el6.x86_64.rpm
+
+
+docker环境搭建,请参照官方说明，本文采用的是官方的rpm包
+何谓私服官方的image镜像站位dockerhub,因为伟大的墙的缘故,所以下载镜像是很痛苦的一件事。当然你可以采用其他科学上网或者镜像加速的方法来获取image。docker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="push-hexo-to-github">
-<meta name="twitter:description" content="如何使用hexo在github上建立静态博客环境搭建
-hexo环境搭建
- 请参考 hexo.io 官方站点, 强烈建议给基本操作下的内容快速浏览一遍,下面的操作是我一个一个命令敲出来的,遇到的坑也会记录下来,希望大家能少走弯路。
+<meta name="twitter:title" content="how to build a private docker registry">
+<meta name="twitter:description" content="如何搭建docker私服环境准备软件包：
 
-github上建立静态博客
+centos6.5_x86_64
 
-github账号申请（略）
-建立一个github项目
-git clone 项目地址 到本地
-项目初始化cd 项目名echo # hexo">
+docker-engine-1.7.0-1.el6.x86_64.rpm
+
+
+docker环境搭建,请参照官方说明，本文采用的是官方的rpm包
+何谓私服官方的image镜像站位dockerhub,因为伟大的墙的缘故,所以下载镜像是很痛苦的一件事。当然你可以采用其他科学上网或者镜像加速的方法来获取image。docker">
 
     
     <link rel="alternative" href="/atom.xml" title="凭海临风的测试江湖" type="application/atom+xml">
@@ -256,14 +253,14 @@ git clone 项目地址 到本地
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/pinghailinfeng_blog/2015/04/17/push-hexo-to-github/" title="push-hexo-to-github" itemprop="url">push-hexo-to-github</a>
+      <a href="/pinghailinfeng_blog/2015/07/21/how-to-build-a-private-docker-registry/" title="how to build a private docker registry" itemprop="url">how to build a private docker registry</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/pinghailinfeng_blog/about" title="Jeff Sui" target="_blank" itemprop="author">Jeff Sui</a>
 		
   <p class="article-time">
-    <time datetime="2015-04-17T08:35:31.000Z" itemprop="datePublished"> 发表于 2015-04-17</time>
+    <time datetime="2015-07-21T15:09:19.000Z" itemprop="datePublished"> 发表于 2015-07-21</time>
     
   </p>
 </header>
@@ -272,68 +269,50 @@ git clone 项目地址 到本地
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#如何使用hexo在github上建立静态博客"><span class="toc-number">1.</span> <span class="toc-text">如何使用hexo在github上建立静态博客</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建"><span class="toc-number">1.1.</span> <span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#华丽的分割线"><span class="toc-number">1.2.</span> <span class="toc-text">华丽的分割线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#遇到的问题"><span class="toc-number">1.3.</span> <span class="toc-text">遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#如何搭建docker私服"><span class="toc-number">1.</span> <span class="toc-text">如何搭建docker私服</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境准备"><span class="toc-number">1.1.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#何谓私服"><span class="toc-number">1.2.</span> <span class="toc-text">何谓私服</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载官方registry镜像"><span class="toc-number">1.3.</span> <span class="toc-text">下载官方registry镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动镜像"><span class="toc-number">1.4.</span> <span class="toc-text">启动镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看镜像状态"><span class="toc-number">1.5.</span> <span class="toc-text">查看镜像状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看私服状态"><span class="toc-number">1.6.</span> <span class="toc-text">查看私服状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推送本地镜像库到registry私服"><span class="toc-number">1.7.</span> <span class="toc-text">推送本地镜像库到registry私服</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_第一步_给本地镜像_打tag"><span class="toc-number">1.7.1.</span> <span class="toc-text">1. 第一步 给本地镜像 打tag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_第二步_推送tag到registry私服"><span class="toc-number">1.7.2.</span> <span class="toc-text">2. 第二步 推送tag到registry私服</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_第三步_查看私服镜像列表"><span class="toc-number">1.7.3.</span> <span class="toc-text">3. 第三步 查看私服镜像列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拉取私服镜像"><span class="toc-number">1.8.</span> <span class="toc-text">拉取私服镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-number">1.9.</span> <span class="toc-text">结论</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h1 id="如何使用hexo在github上建立静态博客">如何使用hexo在github上建立静态博客</h1><h2 id="环境搭建">环境搭建</h2><ol>
-<li><p>hexo环境搭建</p>
-<p> 请参考 hexo.io <a href="http://hexo.io/" title="官方站点" target="_blank" rel="external">官方站点</a>,<br> <strong>强烈建议</strong>给<em>基本操作</em>下的内容快速浏览一遍,下面的操作是我一个一个命令敲出来的,遇到的坑也会记录下来,希望大家能少走弯路。</p>
-</li>
-<li><p>github上建立静态博客</p>
-<ol>
-<li>github账号申请（略）</li>
-<li>建立一个github项目</li>
-<li><code>git clone 项目地址</code> 到本地</li>
-<li>项目初始化<br><code><pre><br>cd 项目名<br>echo # hexo 实例站点 &gt;&gt; README.md<br>git init<br>git add README.md<br>git commit -m “first blood”<br>git remote add origin 项目地址<br>git push -u origin master<br></pre></code></li>
-<li><p>github免费站点建立规则,请仔细阅读这个规则<br><a href="https://help.github.com/articles/user-organization-and-project-pages/" target="_blank" rel="external">https://help.github.com/articles/user-organization-and-project-pages/</a></p>
-</li>
-<li><p>默认github域名</p>
-<p>默认github 分配了 一个name.github.io的域名,<br>还有一个name.github.io/project_name的二级域名,<br>请参照github的提示设置URL。</p>
-</li>
-</ol>
-</li>
-</ol>
-<h2 id="华丽的分割线">华丽的分割线</h2><ol>
-<li><p>站点配置流程</p>
-<ol>
-<li>建立站点文件夹,并站点初始化</li>
-<li>安装hexo依赖</li>
-<li>修改node_module/hexo-server/index.js,用于本地调试</li>
-<li>安装hexo-git-deployer插件</li>
-<li><p>修改全局配置文件_config.yml,配置<code>deploy</code><br><code><pre><br># Site 站点配置<br>title: 凭海临风的测试江湖<br>subtitle:<br>description: 凭海临风的博客<br>author: Jeff Sui<br>language: zh-CN<br>timezone<br></pre></code></p>
-<p><code><pre><br># URL 站点链接<br>## If your site is put in a subdirectory, set url as ‘<a href="http://yoursite.com/child" target="_blank" rel="external">http://yoursite.com/child</a>‘ and root as ‘/child/‘<br>url: <a href="http://jeffsui.github.io" target="_blank" rel="external">http://jeffsui.github.io</a><br>root: /pinghailinfeng_blog/<br>permalink: :year/:month/:day/:title/<br>permalink_defaults:<br></pre></code></p>
-<p><code><pre><br># Deployment<br>## Docs: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">http://hexo.io/docs/deployment.html</a><br>deploy:<br>type: git<br>repo: <a href="https://github.com/jeffsui/pinghailinfeng_blog.git" target="_blank" rel="external">https://github.com/jeffsui/pinghailinfeng_blog.git</a><br>branch : master<br>message :<br></pre></code></p>
-<p><em>以上配置仅供参考</em></p>
-</li>
-</ol>
-</li>
-<li><p>创建文章</p>
+		<h1 id="如何搭建docker私服">如何搭建docker私服</h1><h2 id="环境准备">环境准备</h2><p>软件包：</p>
 <ul>
-<li><p>执行<code>hexo new</code> 命令</p>
-<p>例如:hexo new post my-first-blog</p>
-<p><em>将会自动在source/_posts下创建一个my-first-blog.md的文件,使用的是scaffolds下的post.md模板</em></p>
+<li><p>centos6.5_x86_64</p>
 </li>
-<li><p>修改并保存my-first-blog.md文件</p>
-</li>
-<li><p>站点生成<code>hexo g</code></p>
-</li>
-<li><p>站点部署 <code>hexo d</code></p>
-<p>如果没有报错,恭喜你已经成功推送到 项目的master分支。</p>
+<li><p>docker-engine-1.7.0-1.el6.x86_64.rpm</p>
 </li>
 </ul>
-</li>
-<li><p>创建gh-pages分支并推送到远程<br> <code><pre><br> git fetch origin master<br> git checkout gh-pages<br> git merge master<br> git push origin gh-pages<br> </pre></code></p>
-</li>
-<li>访问<a href="http://jeffsui.github.io/pinghailinfeng_blog/" title="站点" target="_blank" rel="external">http://jeffsui.github.io/pinghailinfeng_blog/</a></li>
-</ol>
-<h2 id="遇到的问题">遇到的问题</h2><ol>
-<li>github站点的规则不熟悉,url配置浪费我2个小时。项目建立的是二级域名,所以必须要按照我说的那样配置。</li>
-<li>本地预览有可能不加载样式,重新删除<code>node_module</code>下所有,执行<code>npm install</code>,再<code>hexo g</code>,<code>hexo server -i 127.0.0.1 -s -o</code>即可。</li>
-<li>hexo3.0版本的git插件必须要独立安装。</li>
-<li>其他坑,自己填吧。</li>
-</ol>
-<h2 id="总结">总结</h2><p><em>大坑各种有,github特别多,还有伟大的墙,兄弟们,github好上,填坑需谨慎！</em></p>
+<p>docker环境搭建,请参照官方说明，本文采用的是官方的rpm包</p>
+<h2 id="何谓私服">何谓私服</h2><p>官方的image镜像站位dockerhub,因为伟大的墙的缘故,所以下载镜像是很痛苦的一件事。当然你可以采用其他科学上网或者镜像加速的方法来获取image。<br>docker官方也提供了一个私服镜像,大家可以通过<code>docker search registry</code>来查找该镜像。</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NAME                                     DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line"><span class="keyword">registry</span>                                 Containerized docker <span class="keyword">registry</span>                   <span class="number">320</span>       [OK]       </span><br><span class="line">atcol/docker-<span class="keyword">registry</span>-ui                 A web UI <span class="keyword">for</span> easy private/local Docker Reg...   <span class="number">55</span>                   [OK]</span><br><span class="line">konradkleine/docker-<span class="keyword">registry</span>-frontend    Browse and modify your Docker <span class="keyword">registry</span> in ...   <span class="number">40</span>                   [OK]</span><br><span class="line">samalba/docker-<span class="keyword">registry</span>                                                                  <span class="number">35</span></span><br></pre></td></tr></table></figure>
+<h2 id="下载官方registry镜像">下载官方registry镜像</h2><ul>
+<li>下载镜像</li>
+</ul>
+<p>使用命令<code>docker pull registry</code>执行下载镜像。</p>
+<ul>
+<li>查看镜像</li>
+</ul>
+<p>下载完毕后,通过<code>docker images</code> 查看该镜像。</p>
+<ul>
+<li>给镜像打标签</li>
+</ul>
+<p>执行这个命令<br><code>docker tag registry:latest localhost:5000/registry:latest</code></p>
+<h2 id="启动镜像">启动镜像</h2><p><code>docker run -d -e SETTINGS_FLAVOR=dev -e STORAGE_PATH=/tmp/registry -v /opt/data/registry:/tmp/registry  -p 5000:5000 registry</code></p>
+<p>这里有几个参数说明下:</p>
+<ul>
+<li>1.<code>-e STORAGE_PATH=/tmp/registry</code> :强制使用存储路径</li>
+<li>2.<code>-v /opt/data/registry:/tmp/registry</code> :绑定本地镜像存储路径</li>
+<li>3.<code>-p 5000:5000</code>:映射容器5000端口到本地5000端口</li>
+</ul>
+<h2 id="查看镜像状态">查看镜像状态</h2><p><code>docker ps</code></p>
+<h2 id="查看私服状态">查看私服状态</h2><p><code>curl http://localhost:5000</code></p>
+<p>显示如下信息,证明registry启动成功:</p>
+<p><code>&quot;\&quot;docker-registry server\&quot;&quot;</code></p>
+<h2 id="推送本地镜像库到registry私服">推送本地镜像库到registry私服</h2><h3 id="1-_第一步_给本地镜像_打tag">1. 第一步 给本地镜像 打tag</h3><p>例如给官方的nginx镜像打tag,执行下面的命令行<br><code>docker pull nginx</code><br><code>docker tag nginx:latest localhost:5000/nginx:latest</code><br>查看镜像库,发现<code>localhost:5000/nginx</code>的镜像已经有了。</p>
+<h3 id="2-_第二步_推送tag到registry私服">2. 第二步 推送tag到registry私服</h3><p><code>docker push localhost:5000/nginx:latest</code></p>
+<h3 id="3-_第三步_查看私服镜像列表">3. 第三步 查看私服镜像列表</h3><p><code>curl http://localhost：5000/V1/search</code></p>
+<p>看到类似这样的信息</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;"<span class="attribute">num_results</span>": <span class="value"><span class="number">5</span></span>, "<span class="attribute">query</span>": <span class="value"><span class="string">""</span></span>, "<span class="attribute">results</span>": <span class="value">[&#123;"<span class="attribute">description</span>": <span class="value"><span class="literal">null</span></span>, "<span class="attribute">name</span>": <span class="value"><span class="string">"correl/erlang"</span></span>&#125;, &#123;"<span class="attribute">description</span>": <span class="value"><span class="literal">null</span></span>, "<span class="attribute">name</span>": <span class="value"><span class="string">"linfeng/cmd"</span></span>&#125;, &#123;"<span class="attribute">description</span>": <span class="value"><span class="literal">null</span></span>, "<span class="attribute">name</span>": <span class="value"><span class="string">"library/my_nodejs_image"</span></span>&#125;, &#123;"<span class="attribute">description</span>": <span class="value"><span class="literal">null</span></span>, "<span class="attribute">name</span>": <span class="value"><span class="string">"library/centos"</span></span>&#125;, &#123;"<span class="attribute">description</span>": <span class="value"><span class="string">""</span></span>, "<span class="attribute">name</span>": <span class="value"><span class="string">"library/nginx"</span></span>&#125;]</span>&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="拉取私服镜像">拉取私服镜像</h2><p><code>docker pull 192.168.20.85:5000/library/centos:7</code></p>
+<h2 id="结论">结论</h2><p>这只是演示如何搭建一个简单的registry私服。因为只有通过命令行方式才能查看私服信息,所以不是很便于操作。下面的博文将演示如何给registry添加web界面。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -341,13 +320,13 @@ git clone 项目地址 到本地
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/pinghailinfeng_blog/categories/hexo/">hexo</a>
+  <a class="article-category-link" href="/pinghailinfeng_blog/categories/docker/">docker</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/pinghailinfeng_blog/tags/hexo/">hexo</a><a href="/pinghailinfeng_blog/tags/搭建/">搭建</a><a href="/pinghailinfeng_blog/tags/笔记/">笔记</a>
+  <span></span> <a href="/pinghailinfeng_blog/tags/docker/">docker</a><a href="/pinghailinfeng_blog/tags/registry/">registry</a><a href="/pinghailinfeng_blog/tags/registry-ui/">registry-ui</a>
   </div>
 
 </div>
@@ -356,7 +335,7 @@ git clone 项目地址 到本地
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://jeffsui.github.io/2015/04/17/push-hexo-to-github/" data-title="push-hexo-to-github | 凭海临风的测试江湖" data-tsina="null" class="share clearfix">
+	  <div data-url="http://jeffsui.github.io/2015/07/21/how-to-build-a-private-docker-registry/" data-title="how to build a private docker registry | 凭海临风的测试江湖" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -369,19 +348,11 @@ git clone 项目地址 到本地
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/pinghailinfeng_blog/2015/04/20/use-shorturl-and-two-dimensional-barcodes-to-beautify-blog/" title="use-shorturl and two-dimensional-barcodes to beautify blog">
-  <strong>上一篇：</strong><br/>
-  <span>
-  use-shorturl and two-dimensional-barcodes to beautify blog</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/pinghailinfeng_blog/2015/04/17/sublime-run-slow-problem/"  title="sublime run slow problem">
+<a href="/pinghailinfeng_blog/2015/06/26/sonar-environment-setup/"  title="sonar-environment-setup">
  <strong>下一篇：</strong><br/> 
- <span>sublime run slow problem
+ <span>sonar-environment-setup
 </span>
 </a>
 </div>
@@ -390,7 +361,7 @@ git clone 项目地址 到本地
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/04/17/push-hexo-to-github/" data-title="push-hexo-to-github" data-url="http://jeffsui.github.io/2015/04/17/push-hexo-to-github/"></div>
+	<div class="ds-thread" data-thread-key="2015/07/21/how-to-build-a-private-docker-registry/" data-title="how to build a private docker registry" data-url="http://jeffsui.github.io/2015/07/21/how-to-build-a-private-docker-registry/"></div>
 </section>
 
 
@@ -400,7 +371,7 @@ git clone 项目地址 到本地
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#如何使用hexo在github上建立静态博客"><span class="toc-number">1.</span> <span class="toc-text">如何使用hexo在github上建立静态博客</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境搭建"><span class="toc-number">1.1.</span> <span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#华丽的分割线"><span class="toc-number">1.2.</span> <span class="toc-text">华丽的分割线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#遇到的问题"><span class="toc-number">1.3.</span> <span class="toc-text">遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#如何搭建docker私服"><span class="toc-number">1.</span> <span class="toc-text">如何搭建docker私服</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境准备"><span class="toc-number">1.1.</span> <span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#何谓私服"><span class="toc-number">1.2.</span> <span class="toc-text">何谓私服</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载官方registry镜像"><span class="toc-number">1.3.</span> <span class="toc-text">下载官方registry镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动镜像"><span class="toc-number">1.4.</span> <span class="toc-text">启动镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看镜像状态"><span class="toc-number">1.5.</span> <span class="toc-text">查看镜像状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看私服状态"><span class="toc-number">1.6.</span> <span class="toc-text">查看私服状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推送本地镜像库到registry私服"><span class="toc-number">1.7.</span> <span class="toc-text">推送本地镜像库到registry私服</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_第一步_给本地镜像_打tag"><span class="toc-number">1.7.1.</span> <span class="toc-text">1. 第一步 给本地镜像 打tag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_第二步_推送tag到registry私服"><span class="toc-number">1.7.2.</span> <span class="toc-text">2. 第二步 推送tag到registry私服</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_第三步_查看私服镜像列表"><span class="toc-number">1.7.3.</span> <span class="toc-text">3. 第三步 查看私服镜像列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拉取私服镜像"><span class="toc-number">1.8.</span> <span class="toc-text">拉取私服镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-number">1.9.</span> <span class="toc-text">结论</span></a></li></ol></li></ol>
  
   </div>
 

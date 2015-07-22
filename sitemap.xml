@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jeffsui.github.io/2015/07/21/how-to-build-a-private-docker-registry/</loc>
+    <lastmod>2015-07-22T00:43:47.565Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://jeffsui.github.io/2015/06/26/sonar-environment-setup/</loc>
     <lastmod>2015-06-26T09:28:21.623Z</lastmod>
   </url>
@@ -12,12 +17,12 @@
   </url>
   
   <url>
-    <loc>http://jeffsui.github.io/2015/05/14/nodejs-learning-01/</loc>
+    <loc>http://jeffsui.github.io/404.html</loc>
     <lastmod>2015-05-18T07:42:38.336Z</lastmod>
   </url>
   
   <url>
-    <loc>http://jeffsui.github.io/404.html</loc>
+    <loc>http://jeffsui.github.io/2015/05/14/nodejs-learning-01/</loc>
     <lastmod>2015-05-18T07:42:38.336Z</lastmod>
   </url>
   
