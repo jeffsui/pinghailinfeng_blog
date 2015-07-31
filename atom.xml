@@ -4,7 +4,7 @@
   
   <link href="/pinghailinfeng_blog/atom.xml" rel="self"/>
   <link href="http://jeffsui.github.io/"/>
-  <updated>2015-07-31T02:40:22.859Z</updated>
+  <updated>2015-07-31T02:52:50.235Z</updated>
   <id>http://jeffsui.github.io/</id>
   
   <author>
@@ -19,9 +19,9 @@
     <link href="http://jeffsui.github.io/2015/07/31/maven3-jdk-1-7-problem-fixed/"/>
     <id>http://jeffsui.github.io/2015/07/31/maven3-jdk-1-7-problem-fixed/</id>
     <published>2015-07-31T00:15:15.000Z</published>
-    <updated>2015-07-31T02:40:22.859Z</updated>
+    <updated>2015-07-31T02:52:50.235Z</updated>
     <content type="html"><![CDATA[<h1 id="maven3_下jdk1-7_出现的问题解决">maven3 下jdk1.7 出现的问题解决</h1><h2 id="环境">环境</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Apache Maven <span class="number">3.3</span>.3 (<span class="number">7994120775791599e205</span>a5524ec3e0dfe41d4a06; <span class="number">2015</span>-<span class="number">04</span>-<span class="number">22</span><span class="string">T19:</span><span class="number">57</span>:<span class="number">3</span></span><br><span class="line"><span class="number">7</span>+<span class="number">08</span>:<span class="number">00</span>)</span><br><span class="line">Maven <span class="string">home:</span> <span class="string">d:</span>\tools\apache-maven-<span class="number">3.3</span>.3</span><br><span class="line">Java <span class="string">version:</span> <span class="number">1.7</span>.0_45, <span class="string">vendor:</span> Oracle Corporation</span><br><span class="line">Java <span class="string">home:</span> <span class="string">c:</span>\Program Files\Java\jdk1.7.0_45\jre</span><br><span class="line">Default <span class="string">locale:</span> zh_CN, platform <span class="string">encoding:</span> GBK</span><br><span class="line">OS <span class="string">name:</span> <span class="string">"windows 7"</span>, <span class="string">version:</span> <span class="string">"6.1"</span>, <span class="string">arch:</span> <span class="string">"amd64"</span>, <span class="string">family:</span> <span class="string">"windows"</span></span><br></pre></td></tr></table></figure>
-<h2 id="使用创建java项目">使用创建java项目</h2><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate <span class="variable">-DgroupId=</span>org.linfeng <span class="variable">-DartifactId=</span>mavendemo <span class="variable">-DarchetypeArtifactId=</span>maven-archetype-quickstart <span class="variable">-DinteractiveMode=</span><span class="constant">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用maven命令行创建java项目">使用<code>maven</code>命令行创建java项目</h2><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate <span class="variable">-DgroupId=</span>org.linfeng <span class="variable">-DartifactId=</span>mavendemo <span class="variable">-DarchetypeArtifactId=</span>maven-archetype-quickstart <span class="variable">-DinteractiveMode=</span><span class="constant">false</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>创建成功</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">cd</span> mavendemo &amp;&amp; <span class="keyword">ls</span></span><br><span class="line">pom.xml  src</span><br></pre></td></tr></table></figure>
